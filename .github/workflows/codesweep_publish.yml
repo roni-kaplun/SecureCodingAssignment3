@@ -9,11 +9,10 @@ on:
 jobs:
   codesweep:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0   
 
       - name: Run CodeSweep
         uses: HCL-TECH-SOFTWARE/appscan-codesweep-action@v2.1
@@ -22,7 +21,10 @@ jobs:
           asoc_secret: ${{ secrets.ASOC_SECRET }}
           application_id: <your ASoC application ID>
           personal_scan: true       
-          scan_base_name: "."      
-          publish_on_merge: false   
+          scan_base_name: "."        
+          publish_on_merge: false      
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: CodeSweep Scan Completed
+        run: echo "CodeSweep scan completed. Check CodeScan in ASoC for results."
