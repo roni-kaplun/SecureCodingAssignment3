@@ -14,8 +14,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  
-          
+          fetch-depth: 0   
+
       - name: Run CodeSweep
         uses: HCL-TECH-SOFTWARE/appscan-codesweep-action@v2.1
         with:
@@ -23,9 +23,8 @@ jobs:
           asoc_secret: ${{ secrets.ASOC_SECRET }}
           application_id: <your ASoC application ID>
           personal_scan: true       
-          scan_base_name: "."        
-          include: "**/*.py"          
-          publish_on_merge: false      
+          scan_base_name: "."         
+          publish_on_merge: false     
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
