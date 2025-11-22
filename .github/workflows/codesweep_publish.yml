@@ -7,21 +7,22 @@ on:
     branches: [main]
 
 jobs:
-  publish:
+  codesweep:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
         with:
-          fetch-depth: 0
+          fetch-depth: 0  
 
-      - name: Run CodeSweep
+      - name: Run and Publish CodeSweep Scan
         uses: HCL-TECH-SOFTWARE/appscan-codesweep-action@v2.1
         with:
           asoc_key: ${{ secrets.ASOC_KEY }}
           asoc_secret: ${{ secrets.ASOC_SECRET }}
-          personal_scan: true           
-          application_id: <your ASoC application ID>
+          application_id: <your ASoC application ID> 
+          personal_scan: true     
+          publish_on_merge: true   # Publish results if PR merged
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
