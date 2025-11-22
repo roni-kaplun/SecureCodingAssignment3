@@ -11,9 +11,10 @@ jobs:
       - name: Publish issues to ASoC
         uses: HCL-TECH-SOFTWARE/appscan-codesweep-action@v2.1
         with:
-          asoc_key: ${{secrets.ASOC_KEY}}
-          asoc_secret: ${{secrets.ASOC_SECRET}}
-          publish_on_merge: true
-          application_id: <your ASoC application ID>
+            asoc_key: ${{secrets.ASOC_KEY}}
+            asoc_secret: ${{secrets.ASOC_SECRET}}
+            personal_scan: true    # force scan on push or manual trigger
+            application_id: <your ASoC application ID>
+
     env: 
       GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
