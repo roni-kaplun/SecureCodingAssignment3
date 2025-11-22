@@ -14,15 +14,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
         with:
-          fetch-depth: 0  
+          fetch-depth: 0
 
-      - name: Run and Publish CodeSweep Scan
+      - name: Run CodeSweep scan
         uses: HCL-TECH-SOFTWARE/appscan-codesweep-action@v2.1
         with:
           asoc_key: ${{ secrets.ASOC_KEY }}
           asoc_secret: ${{ secrets.ASOC_SECRET }}
-          application_id: <your ASoC application ID> 
-          personal_scan: true     
-          publish_on_merge: true   # Publish results if PR merged
+          application_id: <your ASoC application ID>
+          personal_scan: true
+          scan_base_name: "."      
+          publish_on_merge: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
