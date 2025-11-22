@@ -5,6 +5,7 @@ from urllib.request import urlopen
 
 # Category: Cryptographic Failures, Broken Access Control, Security Misconfiguration, Identification and Authentication Failures
 # (does not attempt to prove the identity of the user)
+# Updated
 
 # Password stored in-code, 
 # if this were a real password and in a github repository (which it is), 
