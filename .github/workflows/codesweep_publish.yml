@@ -1,20 +1,27 @@
 name: "HCL AppScan CodeSweep"
+
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+
 jobs:
   publish:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Publish issues to ASoC
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Run CodeSweep
         uses: HCL-TECH-SOFTWARE/appscan-codesweep-action@v2.1
         with:
-            asoc_key: ${{secrets.ASOC_KEY}}
-            asoc_secret: ${{secrets.ASOC_SECRET}}
-            personal_scan: true    # force scan on push or manual trigger
-            application_id: <your ASoC application ID>
-
-    env: 
-      GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          asoc_key: ${{ secrets.ASOC_KEY }}
+          asoc_secret: ${{ secrets.ASOC_SECRET }}
+          personal_scan: true           
+          application_id: <your ASoC application ID>
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
